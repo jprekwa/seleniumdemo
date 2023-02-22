@@ -17,15 +17,31 @@ public class MyAccountPage {
     @FindBy(name = "register")
     private WebElement regButton;
 
+    @FindBy(xpath = "//ul[@class='woocommerce-error']//li")
+    private WebElement errorMessage;
+
     public MyAccountPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
     }
 
-    public LoggedUserPage registerUser(String email, String password) {
+    public LoggedUserPage registerUserWithUniqueEmail(String email, String password) {
+        registerUser(email, password);
+        return new LoggedUserPage(driver);
+    }
+
+    public MyAccountPage registerUserWithSameEmail(String email, String password) {
+        registerUser(email, password);
+        return new MyAccountPage(driver);
+    }
+
+    private void registerUser(String email, String password){
         regEmailAddress.sendKeys(email);
         regPassword.sendKeys(password);
         regButton.click();
-        return new LoggedUserPage(driver);
+    }
+
+    public WebElement getErrorMessage(){
+        return errorMessage;
     }
 }

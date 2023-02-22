@@ -11,17 +11,26 @@ public class RegisterTest extends BaseTest {
     private String email = "test" + random + "@test.com";
     private String password = "topSecret" + email;
 
-    @Test
-    public void registerUser() {
+    @Test(priority = 0)
+    public void registerUserWithUniqueEmail() {
 
         String username = email.substring(0, email.indexOf("@"));
 
         WebElement entryTitle = new HomePage(driver)
                 .openMyAccountPage()
-                .registerUser(email, password)
+                .registerUserWithUniqueEmail(email, password)
                 .getHelloMessage();
 
-        Assert.assertTrue(entryTitle.isDisplayed());
         Assert.assertEquals(entryTitle.getText(), "Hello " + username + " (not " + username + "? Log out)");
+    }
+
+    @Test(priority = 1)
+    public void registerUserWithSameEmailTest() {
+
+        WebElement error = new HomePage(driver)
+                .openMyAccountPage()
+                .registerUserWithSameEmail(email, password).getErrorMessage();
+
+        Assert.assertTrue(error.getText().contains("An account is already registered with your email address."));
     }
 }
