@@ -13,6 +13,7 @@ public class RegisterTest extends BaseTest {
 
     @Test
     public void registerUser() {
+
         String username = email.substring(0, email.indexOf("@"));
 
         WebElement entryTitle = new HomePage(driver)
