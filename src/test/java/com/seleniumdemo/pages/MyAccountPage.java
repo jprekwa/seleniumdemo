@@ -20,6 +20,15 @@ public class MyAccountPage {
     @FindBy(xpath = "//ul[@class='woocommerce-error']//li")
     private WebElement errorMessage;
 
+    @FindBy(id = "username")
+    private WebElement userNameInput;
+
+    @FindBy(id = "password")
+    private WebElement passwordInput;
+
+    @FindBy(name = "login")
+    private WebElement loginButton;
+
     public MyAccountPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
@@ -35,13 +44,29 @@ public class MyAccountPage {
         return new MyAccountPage(driver);
     }
 
-    private void registerUser(String email, String password){
+    private void registerUser(String email, String password) {
         regEmailAddress.sendKeys(email);
         regPassword.sendKeys(password);
         regButton.click();
     }
 
-    public WebElement getErrorMessage(){
+    public LoggedUserPage logInValidData(String username, String password) {
+        logIn(username, password);
+        return new LoggedUserPage(driver);
+    }
+
+    public MyAccountPage logInInvalidData(String username, String password) {
+        logIn(username, password);
+        return this;
+    }
+
+    private void logIn(String username, String password) {
+        userNameInput.sendKeys(username);
+        passwordInput.sendKeys(password);
+        loginButton.click();
+    }
+
+    public WebElement getErrorMessage() {
         return errorMessage;
     }
 }
