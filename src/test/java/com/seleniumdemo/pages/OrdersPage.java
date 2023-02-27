@@ -1,9 +1,11 @@
 package com.seleniumdemo.pages;
 
+import com.seleniumdemo.models.Customer;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class OrdersPage {
 
@@ -16,7 +18,7 @@ public class OrdersPage {
     @FindBy(id = "billing_company")
     private WebElement companyNameInput;
 
-    @FindBy(id = "select2-billing_country-container")
+    @FindBy(id = "billing_country")
     private WebElement countryNameSelect;
 
     @FindBy(id = "billing_address_1")
@@ -50,5 +52,19 @@ public class OrdersPage {
         this.driver = driver;
     }
 
-
+    public OrderDetailsPage fillOrderDetails(Customer customer, String comments) {
+        firstNameInput.sendKeys(customer.getFirstName());
+        lastNameInput.sendKeys(customer.getLastName());
+        companyNameInput.sendKeys(customer.getCompanyName());
+        Select countrySelect = new Select(countryNameSelect);
+        countrySelect.selectByVisibleText(customer.getCountryName());
+        streetAddressFirstInput.sendKeys(String.format("%s %s", customer.getStreet(), customer.getFlatNumber()));
+        postalCodeInput.sendKeys(customer.getPostalCode());
+        cityInput.sendKeys(customer.getCity());
+        phoneNumberInput.sendKeys(customer.getPhoneNumber());
+        emailAddressInput.sendKeys(customer.getEmail());
+        orderCommentsInput.sendKeys(comments);
+        placeOrderButton.click();
+        return new OrderDetailsPage(driver);
+    }
 }
