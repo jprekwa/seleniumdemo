@@ -10,7 +10,7 @@ public class Customer {
     private String postalCode = "58920";
     private String city = "Bergen";
     private String phoneNumber = "12345678";
-    private String email = "contact@" + companyName + ".com";
+    private String email = "contact@" + companyName.toLowerCase() + ".com";
 
     public String getFirstName() {
         return firstName;

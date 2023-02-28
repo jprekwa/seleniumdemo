@@ -21,5 +21,6 @@ public class CheckoutTest extends BaseTest {
                 .fillOrderDetails(customer, "Some random comment");
 
         Assert.assertEquals(orderDetailsPage.getOrderNotice().getText(), "Thank you. Your order has been received.");
+        Assert.assertTrue(orderDetailsPage.getProductName().getText().equals("Java Selenium WebDriver × 1"));
     }
 }

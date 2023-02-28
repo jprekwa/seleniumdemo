@@ -1,5 +1,6 @@
 package com.seleniumdemo.pages;
 
+import com.seleniumdemo.utils.SeleniumHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,6 +19,7 @@ public class CartPage {
     }
 
     public OrdersPage openOrdersPage() {
+        SeleniumHelper.waitForClickable(proceedToCheckoutButton, driver);
         proceedToCheckoutButton.click();
         return new OrdersPage(driver);
     }
