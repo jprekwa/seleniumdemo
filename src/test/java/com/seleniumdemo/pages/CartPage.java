@@ -28,6 +28,12 @@ public class CartPage {
     @FindBy(xpath = "//td[@class='product-subtotal']/span")
     private WebElement productTotal;
 
+    @FindBy(xpath = "//td[@class='product-remove']/a")
+    private WebElement removeLink;
+
+    @FindBy(className = "woocommerce-message")
+    private WebElement removedMessage;
+
     public CartPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
@@ -57,5 +63,14 @@ public class CartPage {
 
     public String getProductTotal() {
         return productTotal.getText();
+    }
+
+    public CartPage removeProductFromCart() {
+        removeLink.click();
+        return this;
+    }
+
+    public String getRemovedMessage() {
+        return removedMessage.getText();
     }
 }

@@ -15,5 +15,4 @@ public class EmptyCartTest extends BaseTest {
 
         Assert.assertEquals(emptyCartMessage, "Your cart is currently empty.");
     }
-
 }
