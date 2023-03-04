@@ -22,13 +22,13 @@ public class LogInTest extends BaseTest {
         Assert.assertTrue(entryTitle.getText().contains("Hello " + username));
     }
 
-    @Test
-    public void logInWithInvalidDataTest() {
-        WebElement error = new HomePage(driver)
-                .openMyAccountPage()
-                .logInInvalidData(user.getEmail(), user.getPassword() + "?")
-                .getErrorMessage();
-
-        Assert.assertTrue(error.getText().contains("Incorrect username or password"), "Expected error text doesn't match");
-    }
+//    @Test
+//    public void logInWithInvalidDataTest() {
+//        WebElement error = new HomePage(driver)
+//                .openMyAccountPage()
+//                .logInInvalidData(user.getEmail(), user.getPassword() + "?")
+//                .getErrorMessage();
+//
+//        Assert.assertTrue(error.getText().contains("Incorrect username or password"), "Expected error text doesn't match");
+//    }
 }

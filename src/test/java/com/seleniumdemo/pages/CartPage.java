@@ -13,6 +13,9 @@ public class CartPage {
     @FindBy(partialLinkText = "Proceed to checkout")
     private WebElement proceedToCheckoutButton;
 
+    @FindBy(className = "cart-empty")
+    private WebElement emptyCarParagraph;
+
     public CartPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
@@ -22,5 +25,9 @@ public class CartPage {
         SeleniumHelper.waitForClickable(proceedToCheckoutButton, driver);
         proceedToCheckoutButton.click();
         return new OrdersPage(driver);
+    }
+
+    public String getEmptyCartMessage() {
+        return emptyCarParagraph.getText();
     }
 }
