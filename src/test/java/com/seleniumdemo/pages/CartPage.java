@@ -16,6 +16,18 @@ public class CartPage {
     @FindBy(className = "cart-empty")
     private WebElement emptyCarParagraph;
 
+    @FindBy(xpath = "//td[@class='product-name']/a")
+    private WebElement productName;
+
+    @FindBy(xpath = "//td[@class='product-price']/span")
+    private WebElement productPrice;
+
+    @FindBy(xpath = "//div[@class='quantity']/input")
+    private WebElement productQuantity;
+
+    @FindBy(xpath = "//td[@class='product-subtotal']/span")
+    private WebElement productTotal;
+
     public CartPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
@@ -29,5 +41,21 @@ public class CartPage {
 
     public String getEmptyCartMessage() {
         return emptyCarParagraph.getText();
+    }
+
+    public String getProductName() {
+        return productName.getText();
+    }
+
+    public String getProductPrice() {
+        return productPrice.getText();
+    }
+
+    public String getProductQuantity() {
+        return productQuantity.getAttribute("value");
+    }
+
+    public String getProductTotal() {
+        return productTotal.getText();
     }
 }

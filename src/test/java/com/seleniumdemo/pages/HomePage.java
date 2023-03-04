@@ -18,6 +18,9 @@ public class HomePage {
     @FindBy(xpath = "//li[contains(@class, 'czr-dropdown')]/a/i[@class='icn-shoppingcart']")
     private WebElement shoppingCartIcon;
 
+    @FindBy(className = "sek-btn-text")
+    private WebElement shopButton;
+
     public HomePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
@@ -38,5 +41,10 @@ public class HomePage {
         actions.doubleClick(shoppingCartIcon);
         actions.perform();
         return new CartPage(driver);
+    }
+
+    public ProductListPage openShopPageWithShopButton() {
+        shopButton.click();
+        return new ProductListPage(driver);
     }
 }

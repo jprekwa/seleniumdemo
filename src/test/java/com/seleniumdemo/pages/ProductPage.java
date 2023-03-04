@@ -15,6 +15,9 @@ public class ProductPage {
     @FindBy(xpath = "//div[@class='woocommerce-message']/a[text()='View cart']")
     private WebElement viewCartButton;
 
+    @FindBy(id = "quantity_640345874b6ad")
+    private WebElement quantityInput;
+
     public ProductPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
@@ -28,5 +31,12 @@ public class ProductPage {
     public CartPage viewCart() {
         viewCartButton.click();
         return new CartPage(driver);
+    }
+
+    public ProductPage setQuantity(int quantity) {
+        String qty = String.valueOf(quantity);
+        quantityInput.clear();
+        quantityInput.sendKeys(qty);
+        return this;
     }
 }
