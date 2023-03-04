@@ -28,7 +28,7 @@ public class CheckoutTest extends BaseTest {
 
     @Test
     public void orderedProductDetailsTest() {
-        int quantity = 600;
+        int quantity = 6;
         int price = 1;
         String priceDisplayed = price + ",00 zł";
         String total = quantity * price + ",00 zł";

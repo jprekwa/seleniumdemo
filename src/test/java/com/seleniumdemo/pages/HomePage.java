@@ -1,5 +1,6 @@
 package com.seleniumdemo.pages;
 
+import com.seleniumdemo.utils.SeleniumHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -20,6 +21,21 @@ public class HomePage {
 
     @FindBy(className = "sek-btn-text")
     private WebElement shopButton;
+
+    @FindBy(name = "nimble_name")
+    private WebElement contactUsNameInput;
+
+    @FindBy(name = "nimble_email")
+    private WebElement contactUsEmailInput;
+
+    @FindBy(name = "nimble_message")
+    private WebElement contactUsMessageInput;
+
+    @FindBy(name = "nimble_submit")
+    private WebElement contactUsSubmitButton;
+
+    @FindBy(xpath = "//div[@id='sek-form-respond']/span")
+    private WebElement contactUsMessageSentInfo;
 
     public HomePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -46,5 +62,30 @@ public class HomePage {
     public ProductListPage openShopPageWithShopButton() {
         shopButton.click();
         return new ProductListPage(driver);
+    }
+
+    public HomePage setContactName(String name) {
+        contactUsNameInput.sendKeys(name);
+        return this;
+    }
+
+    public HomePage setContactEmail(String email) {
+        contactUsEmailInput.sendKeys(email);
+        return this;
+    }
+
+    public HomePage setContactMessage(String message) {
+        contactUsMessageInput.sendKeys(message);
+        return this;
+    }
+
+    public HomePage submitContactUsMessage() {
+        contactUsSubmitButton.click();
+        return this;
+    }
+
+    public String getContactUsMessageSentInfo() {
+        SeleniumHelper.waitForElement(contactUsMessageSentInfo, driver);
+        return contactUsMessageSentInfo.getText();
     }
 }

@@ -15,7 +15,7 @@ public class ProductPage {
     @FindBy(xpath = "//div[@class='woocommerce-message']/a[text()='View cart']")
     private WebElement viewCartButton;
 
-    @FindBy(id = "quantity_640345874b6ad")
+    @FindBy(xpath = "//input[contains(@class, 'input-text')]")
     private WebElement quantityInput;
 
     public ProductPage(WebDriver driver) {

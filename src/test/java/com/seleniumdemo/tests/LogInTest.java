@@ -4,6 +4,7 @@ import com.seleniumdemo.models.User;
 import com.seleniumdemo.pages.HomePage;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 public class LogInTest extends BaseTest {
@@ -22,13 +23,14 @@ public class LogInTest extends BaseTest {
         Assert.assertTrue(entryTitle.getText().contains("Hello " + username));
     }
 
-//    @Test
-//    public void logInWithInvalidDataTest() {
-//        WebElement error = new HomePage(driver)
-//                .openMyAccountPage()
-//                .logInInvalidData(user.getEmail(), user.getPassword() + "?")
-//                .getErrorMessage();
-//
-//        Assert.assertTrue(error.getText().contains("Incorrect username or password"), "Expected error text doesn't match");
-//    }
+    @Test
+    @Ignore
+    public void logInWithInvalidDataTest() {
+        WebElement error = new HomePage(driver)
+                .openMyAccountPage()
+                .logInInvalidData(user.getEmail(), user.getPassword() + "?")
+                .getErrorMessage();
+
+        Assert.assertTrue(error.getText().contains("Incorrect username or password"), "Expected error text doesn't match");
+    }
 }
