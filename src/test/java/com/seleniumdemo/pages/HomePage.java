@@ -37,6 +37,30 @@ public class HomePage {
     @FindBy(xpath = "//div[@id='sek-form-respond']/span")
     private WebElement contactUsMessageSentInfo;
 
+    @FindBy(xpath = "//div[@class='sek-module-inner' and contains(text(), 'Design')]")
+    private WebElement firstPicTextDiv;
+
+    @FindBy(xpath = "//div[@data-sek-id='__nimble__59beae0d916a']//p")
+    private WebElement firstPicTextParagraph;
+
+    @FindBy(xpath = "//div[@data-sek-id='__nimble__91dfba3bdf88']//h3")
+    private WebElement secondPicFirstTextHeader;
+
+    @FindBy(xpath = "//div[@data-sek-id='__nimble__ce9c67ba2a1c']//p")
+    private WebElement secondPicFirstTextParagraph;
+
+    @FindBy(xpath = "//div[@data-sek-id='__nimble__2979ac9def83']//h3")
+    private WebElement secondPicSecondTextHeader;
+
+    @FindBy(xpath = "//div[@data-sek-id='__nimble__6e96a4095315']//p")
+    private WebElement secondPicSecondTextParagraph;
+
+    @FindBy(xpath = "//div[@data-sek-id='__nimble__5d6417c05922']//h3")
+    private WebElement secondPicThirdTextHeader;
+
+    @FindBy(xpath = "//div[@data-sek-id='__nimble__b547e4fe7ec6']//p")
+    private WebElement secondPicThirdTextParagraph;
+
     public HomePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
@@ -87,5 +111,37 @@ public class HomePage {
     public String getContactUsMessageSentInfo() {
         SeleniumHelper.waitForElement(contactUsMessageSentInfo, driver);
         return contactUsMessageSentInfo.getText();
+    }
+
+    public WebElement getFirstPicTextDiv() {
+        return firstPicTextDiv;
+    }
+
+    public WebElement getFirstPicTextParagraph() {
+        return firstPicTextParagraph;
+    }
+
+    public WebElement getSecondPicFirstTextHeader() {
+        return secondPicFirstTextHeader;
+    }
+
+    public WebElement getSecondPicFirstTextParagraph() {
+        return secondPicFirstTextParagraph;
+    }
+
+    public WebElement getSecondPicSecondTextHeader() {
+        return secondPicSecondTextHeader;
+    }
+
+    public WebElement getSecondPicSecondTextParagraph() {
+        return secondPicSecondTextParagraph;
+    }
+
+    public WebElement getSecondPicThirdTextHeader() {
+        return secondPicThirdTextHeader;
+    }
+
+    public WebElement getSecondPicThirdTextParagraph() {
+        return secondPicThirdTextParagraph;
     }
 }

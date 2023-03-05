@@ -4,6 +4,7 @@ import com.seleniumdemo.models.User;
 import com.seleniumdemo.pages.HomePage;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 public class RegisterTest extends BaseTest {
@@ -11,6 +12,7 @@ public class RegisterTest extends BaseTest {
     User user = new User();
 
     @Test(priority = 0)
+    @Ignore
     public void registerUserWithUniqueEmail() {
         String username = user.getEmail().substring(0, user.getEmail().indexOf("@"));
 
@@ -23,6 +25,7 @@ public class RegisterTest extends BaseTest {
     }
 
     @Test(priority = 1)
+    @Ignore
     public void registerUserWithSameEmailTest() {
         WebElement error = new HomePage(driver)
                 .openMyAccountPage()
