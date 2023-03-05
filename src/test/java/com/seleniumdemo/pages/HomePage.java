@@ -37,7 +37,7 @@ public class HomePage {
     @FindBy(xpath = "//div[@id='sek-form-respond']/span")
     private WebElement contactUsMessageSentInfo;
 
-    @FindBy(xpath = "//div[@class='sek-module-inner' and contains(text(), 'Design')]")
+    @FindBy(xpath = "//div[@data-sek-id='__nimble__cc091b3ff1c1']")
     private WebElement firstPicTextDiv;
 
     @FindBy(xpath = "//div[@data-sek-id='__nimble__59beae0d916a']//p")
@@ -60,6 +60,9 @@ public class HomePage {
 
     @FindBy(xpath = "//div[@data-sek-id='__nimble__b547e4fe7ec6']//p")
     private WebElement secondPicThirdTextParagraph;
+
+    @FindBy(id = "post-39")
+    private WebElement firstPost;
 
     public HomePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -143,5 +146,10 @@ public class HomePage {
 
     public WebElement getSecondPicThirdTextParagraph() {
         return secondPicThirdTextParagraph;
+    }
+
+    public PostPage goToFirstPost() {
+        firstPost.click();
+        return new PostPage(driver);
     }
 }
