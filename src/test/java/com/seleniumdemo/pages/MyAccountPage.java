@@ -29,6 +29,15 @@ public class MyAccountPage {
     @FindBy(name = "login")
     private WebElement loginButton;
 
+    @FindBy(xpath = "//a[text()='Orders']")
+    private WebElement ordersSection;
+
+    @FindBy(xpath = "//a[text()='View']")
+    private WebElement ordersSectionViewButton;
+
+    @FindBy(xpath = "//td[contains(@class, 'product-name')]")
+    private WebElement ordersSectionProductName;
+
     public MyAccountPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
@@ -69,4 +78,15 @@ public class MyAccountPage {
     public WebElement getErrorMessage() {
         return errorMessage;
     }
+
+    public MyAccountPage goToOrderDetails() {
+        ordersSection.click();
+        ordersSectionViewButton.click();
+        return this;
+    }
+
+    public WebElement getProductName() {
+        return ordersSectionProductName;
+    }
+
 }

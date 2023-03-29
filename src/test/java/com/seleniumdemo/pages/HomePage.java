@@ -1,6 +1,7 @@
 package com.seleniumdemo.pages;
 
 import com.seleniumdemo.utils.SeleniumHelper;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -107,7 +108,8 @@ public class HomePage {
     }
 
     public HomePage submitContactUsMessage() {
-        contactUsSubmitButton.click();
+        contactUsMessageInput.sendKeys(Keys.TAB);
+        contactUsSubmitButton.sendKeys(Keys.ENTER);
         return this;
     }
 

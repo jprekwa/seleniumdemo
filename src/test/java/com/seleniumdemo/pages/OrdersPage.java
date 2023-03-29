@@ -1,6 +1,7 @@
 package com.seleniumdemo.pages;
 
 import com.seleniumdemo.models.Customer;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -42,7 +43,7 @@ public class OrdersPage {
     @FindBy(id = "order_comments")
     private WebElement orderCommentsInput;
 
-    @FindBy(id = "place_order")
+    @FindBy(xpath = "//button[text()='Place order']")
     private WebElement placeOrderButton;
 
     private WebDriver driver;
@@ -52,7 +53,7 @@ public class OrdersPage {
         this.driver = driver;
     }
 
-    public OrderDetailsPage fillOrderDetails(Customer customer, String comments) {
+    public OrderDetailsPage checkoutCustomer(Customer customer) {
         firstNameInput.sendKeys(customer.getFirstName());
         lastNameInput.sendKeys(customer.getLastName());
         companyNameInput.sendKeys(customer.getCompanyName());
@@ -63,8 +64,15 @@ public class OrdersPage {
         cityInput.sendKeys(customer.getCity());
         phoneNumberInput.sendKeys(customer.getPhoneNumber());
         emailAddressInput.sendKeys(customer.getEmail());
-        orderCommentsInput.sendKeys(comments);
-        placeOrderButton.click();
+        orderCommentsInput.sendKeys("Some comment");
+        orderCommentsInput.sendKeys(Keys.TAB);
+        placeOrderButton.sendKeys(Keys.ENTER);
+        return new OrderDetailsPage(driver);
+    }
+
+    public OrderDetailsPage checkoutLoggedUser() {
+        orderCommentsInput.sendKeys(Keys.TAB);
+        placeOrderButton.sendKeys(Keys.ENTER);
         return new OrderDetailsPage(driver);
     }
 }

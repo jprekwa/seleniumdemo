@@ -20,7 +20,7 @@ public class CheckoutTest extends BaseTest {
                 .addProductToCart()
                 .viewCart()
                 .openOrdersPage()
-                .fillOrderDetails(customer, "Some random comment");
+                .checkoutCustomer(customer);
 
         Assert.assertEquals(orderDetailsPage.getOrderNotice().getText(), "Thank you. Your order has been received.");
         Assert.assertTrue(orderDetailsPage.getProductName().getText().equals(productName + " × 1"));

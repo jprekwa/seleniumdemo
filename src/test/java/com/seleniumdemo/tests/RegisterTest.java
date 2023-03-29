@@ -12,7 +12,6 @@ public class RegisterTest extends BaseTest {
     User user = new User();
 
     @Test(priority = 0)
-    @Ignore
     public void registerUserWithUniqueEmail() {
         String username = user.getEmail().substring(0, user.getEmail().indexOf("@"));
 
